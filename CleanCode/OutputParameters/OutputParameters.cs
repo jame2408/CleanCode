@@ -11,7 +11,9 @@ namespace CleanCode.OutputParameters
         public void DisplayCustomers()
         {
             int totalCount = 0;
-            var customers = GetCustomers(1, out totalCount);
+            var tuple = GetCustomers(1);
+            totalCount = tuple.Item2;
+            var customers = tuple.Item1;
 
             Console.WriteLine("Total customers: " + totalCount);
             foreach (var customer in customers)
@@ -20,10 +22,10 @@ namespace CleanCode.OutputParameters
             }
         }
 
-        private IEnumerable<Customer> GetCustomers(int pageIndex, out int totalCount)
+        private Tuple<IEnumerable<Customer>, int> GetCustomers(int pageIndex)
         {
-            totalCount = 100;
-            return new List<Customer>();
+            var totalCount = 100;
+            return Tuple.Create((IEnumerable<Customer>) new List<Customer>(), totalCount);
         }
     }
 
