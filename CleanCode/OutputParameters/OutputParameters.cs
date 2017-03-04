@@ -13,13 +13,10 @@ namespace CleanCode.OutputParameters
 
         public void DisplayCustomers()
         {
-            int totalCount = 0;
             var result = GetCustomers(1);
-            totalCount = result.TotalCount;
-            var customers = result.Customers;
 
-            Console.WriteLine("Total customers: " + totalCount);
-            foreach (var customer in customers)
+            Console.WriteLine("Total customers: " + result.TotalCount);
+            foreach (var customer in result.Customers)
             {
                 Console.WriteLine(customer);
             }
