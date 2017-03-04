@@ -14,7 +14,6 @@ namespace CleanCode.VariableDeclarationsAtTheTop
         {
             decimal overtimeHours = 0;
             decimal regularHours = 0;
-            decimal regularPay;
             decimal overtimePay = 0;
 
             decimal grossPay = 0;
@@ -48,7 +47,7 @@ namespace CleanCode.VariableDeclarationsAtTheTop
                 overtimePay += (rate * 1.5m) * overtimeHours;
             }
 
-            regularPay = (regularHours * rate);
+            var regularPay = (regularHours * rate);
             grossPay = regularPay + overtimePay;
 
             return grossPay;
