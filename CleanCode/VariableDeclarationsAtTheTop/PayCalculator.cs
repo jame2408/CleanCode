@@ -14,7 +14,7 @@ namespace CleanCode.VariableDeclarationsAtTheTop
         {
             decimal overtimeHours = 0;
             decimal regularHours = 0;
-            decimal regularPay = 0;
+            decimal regularPay;
             decimal overtimePay = 0;
 
             decimal grossPay = 0;
