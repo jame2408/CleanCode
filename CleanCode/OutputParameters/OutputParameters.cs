@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanCode.OutputParameters
 {
     public class OutputParameters
     {
+        public class GetCustomersResult
+        {
+            public IEnumerable<Customer> Item1 { get; set; }
+            public int Item2 { get; set; }
+        }
+
         public void DisplayCustomers()
         {
             int totalCount = 0;
@@ -22,10 +25,10 @@ namespace CleanCode.OutputParameters
             }
         }
 
-        private Tuple<IEnumerable<Customer>, int> GetCustomers(int pageIndex)
+        private GetCustomersResult GetCustomers(int pageIndex)
         {
             var totalCount = 100;
-            return Tuple.Create((IEnumerable<Customer>) new List<Customer>(), totalCount);
+            return new GetCustomersResult() { Item1 = new List<Customer>(), Item2 = totalCount };
         }
     }
 
