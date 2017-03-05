@@ -14,7 +14,6 @@ namespace CleanCode.Comments
             _dbContext = new DbContext();
         }
 
-        // Returns list of customers in a country.
         public List<Customer> GetCustomers(int countryCode)
         {
             //TODO: We need to get rid of abcd once we revisit this method. Currently, it's 
