@@ -25,15 +25,22 @@ namespace CleanCode.Comments
 
         public void SubmitOrder(Order order)
         {
-            // Save order to the database
+            SaveOrder(order);
+
+            NotifyCustomer(order);
+        }
+
+        private void SaveOrder(Order order)
+        {
             _dbContext.Orders.Add(order);
             _dbContext.SaveChanges();
+        }
 
-            // Send an email to the customer
+        private static void NotifyCustomer(Order order)
+        {
             var client = new SmtpClient();
             var message = new MailMessage("noreply@site.com", order.Customer.Email, "Your order was successfully placed.", ".");
             client.Send(message);
-
         }
     }
 
