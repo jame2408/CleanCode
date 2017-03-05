@@ -6,7 +6,7 @@ namespace CleanCode.Comments
 {
     public class Comments
     {
-        private int _pf;  // pay frequency
+        private int _payFrequency;
         private DbContext _dbContext;
 
         public Comments()
