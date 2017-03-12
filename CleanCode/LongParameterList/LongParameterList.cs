@@ -16,27 +16,47 @@ namespace CleanCode.LongParameterList
         public DateTime DateTo { get; private set; }
     }
 
+    public class ReservationsQuery
+    {
+        private int? _customerId;
+        private LocationType _locationType;
+        private int _locationId;
+        private User _user;
+        private DateRange _dateRange;
+
+        public int? CustomerId { get { return _customerId; } }
+        public LocationType LocationType { get { return _locationType; } }
+        public int LocationId { get { return _locationId; } }
+        public User User { get { return _user; } }
+        public DateRange DateRange { get { return _dateRange; } }
+
+        public ReservationsQuery(DateRange dateRange, User user, int locationId, LocationType locationType, int? customerId = null)
+        {
+            _dateRange = dateRange;
+            _user = user;
+            _locationId = locationId;
+            _locationType = locationType;
+            _customerId = customerId;
+        }
+    }
+
     public class LongParameterList
     {
-        public IEnumerable<Reservation> GetReservations(DateRange dateRange,
-           User user, int locationId,
-           LocationType locationType, int? customerId = null)
+        public IEnumerable<Reservation> GetReservations(ReservationsQuery query)
         {
-            if (dateRange.DateFrom >= DateTime.Now)
+            if (query.DateRange.DateFrom >= DateTime.Now)
                 throw new ArgumentNullException("dateFrom");
-            if (dateRange.DateTo <= DateTime.Now)
+            if (query.DateRange.DateTo <= DateTime.Now)
                 throw new ArgumentNullException("dateTo");
 
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Reservation> GetUpcomingReservations(DateRange dateRange,
-            User user, int locationId,
-            LocationType locationType)
+        public IEnumerable<Reservation> GetUpcomingReservations(ReservationsQuery query)
         {
-            if (dateRange.DateFrom >= DateTime.Now)
+            if (query.DateRange.DateFrom >= DateTime.Now)
                 throw new ArgumentNullException("dateFrom");
-            if (dateRange.DateTo <= DateTime.Now)
+            if (query.DateRange.DateTo <= DateTime.Now)
                 throw new ArgumentNullException("dateTo");
 
             throw new NotImplementedException();
