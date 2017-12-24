@@ -21,17 +21,12 @@ namespace CleanCode.NestedConditionals
 
         public void Cancel()
         {
-            if (IsAlreadyStarted() || IsCancellationPeriodOver())
+            if (IsCancellationPeriodOver())
             {
                 throw new InvalidOperationException("It's too late to cancel.");
             }
 
             IsCanceled = true;
-        }
-
-        private bool IsAlreadyStarted()
-        {
-            return DateTime.Now > From;
         }
 
         private bool IsCancellationPeriodOver()
