@@ -5,6 +5,11 @@ namespace CleanCode.NestedConditionals
     public class Customer
     {
         public int LoyaltyPoints { get; set; }
+
+        public bool IsGoldCustomer()
+        {
+            return this.LoyaltyPoints > 100;
+        }
     }
 
     public class Reservation
@@ -31,13 +36,8 @@ namespace CleanCode.NestedConditionals
 
         private bool IsCancellationPeriodOver()
         {
-            return (IsGoldCustomer() && LessThen(maxHours: 24)) ||
-                   (!IsGoldCustomer() && LessThen(maxHours: 48));
-        }
-
-        private bool IsGoldCustomer()
-        {
-            return Customer.LoyaltyPoints > 100;
+            return (Customer.IsGoldCustomer() && LessThen(maxHours: 24)) ||
+                   (!Customer.IsGoldCustomer() && LessThen(maxHours: 48));
         }
 
         private bool LessThen(int maxHours)
